@@ -12,7 +12,7 @@ def first():
 
 @app.route('/some', methods=['POST'])
 def getData():
-    print(request.args)
+    print("hao")
 
 
 app.run()
