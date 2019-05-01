@@ -1,21 +1,28 @@
 import flask
 from flask import request, jsonify
+import json
+
+from keras.models import load_model
+import get_novel_prediction
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
+novel_model = load_model('./novel/novel_trained_model.model')
+novel_data_train_max_length_sequence = 75
+
 
 @app.route('/', methods=['GET'])
 def first():
-    return '<h1>YOLO</h1>'
+    return '<h1>HOME</h1>'
 
 
-@app.route('/some', methods=['GET'])
+@app.route('/novel', methods=['GET'])
 def getData():
-    s = ''
-    for i in request.args:
-        s += i + ' ' + request.args[i] + '<br />'
-    return s
+    text = request.args['data']
+    prediction = get_novel_prediction.getPrediction(novel_model, text)
+    d = {'data': text + prediction}
+    return json.dumps(s)
 
 
 app.run()
