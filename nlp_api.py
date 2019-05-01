@@ -10,9 +10,12 @@ def first():
     return '<h1>YOLO</h1>'
 
 
-@app.route('/some', methods=['POST'])
+@app.route('/some', methods=['GET'])
 def getData():
-    print("hao")
+    s = ''
+    for i in request.args:
+        s += i + ' ' + request.args[i] + '<br />'
+    return s
 
 
 app.run()
