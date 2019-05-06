@@ -17,7 +17,7 @@ def first():
     return '<h1>HOME</h1>'
 
 
-@app.route('/novel', methods=['GET'])
+@app.route('/novel', methods=['GET', 'POST'])
 def getData():
     text = request.args['data']
     prediction = get_novel_prediction.getPrediction(novel_model, text)
