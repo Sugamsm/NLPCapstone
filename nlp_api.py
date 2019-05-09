@@ -3,7 +3,7 @@ from flask import request, jsonify
 import json
 
 from keras.models import load_model
-import get_novel_prediction
+import helper_functions
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -12,17 +12,34 @@ novel_model = load_model('./novel/novel_trained_model.model')
 novel_data_train_max_length_sequence = 75
 
 
+print('Reached here')
+def getPoemModel():
+    print('Called model')
+    poem_model = load_model('poem/poems_model_local_new.h5py')
+    print(poem_model.input_shape)
+    return poem_model
+poem_model = getPoemModel()
+novel_model = None
+articles_model = None
+
+
 @app.route('/', methods=['GET'])
 def first():
     return '<h1>HOME</h1>'
 
 
 @app.route('/novel', methods=['GET', 'POST'])
-def getData():
+def getNovel():
     text = request.args['data']
-    prediction = get_novel_prediction.getPrediction(novel_model, text)
+    prediction = getPoemPrediction(novel_model, text)
     d = {'data': text + prediction}
     return json.dumps(s)
 
+@app.route('/poem', methods=['GET', 'POST'])
+def getPoems():
+    text = request.args['data']
+    prediction = helper_functions.getPoemPrediction(text, poem_model)
+    d = {'data': text + " " + prediction}
+    return json.dumps(d)
 
 app.run()

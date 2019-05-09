@@ -20,7 +20,6 @@ filtered_lines[:20]
 
 X = []
 Y = []
-
 tokenizer = Tokenizer()
 tokenizer.fit_on_texts(filtered_lines)
 words = len(tokenizer.word_index) + 1
@@ -63,10 +62,7 @@ data_dict = {}
 data_dict['word_ind_dic'] = tokenizer.word_index
 data_dict['long_seq'] = longest_seq_len
 open('poem_data_dict.json', 'w').write(json.dumps(data_dict))
-    
-    
-    
-
+"""
 from keras.models import load_model
 trained = load_model('S:/SUNY/Semester 4/Project/Capstone/Capstone/poems_model_local.h5py')
 
@@ -81,7 +77,7 @@ for i in range(20):
             inp += " " + word
             break
 print(inp)
-        
+ """       
     
     
     
