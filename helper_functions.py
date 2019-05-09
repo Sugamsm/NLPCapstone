@@ -5,7 +5,7 @@ import nltk
 import json
 from keras import backend as K
 
-K.clear_session()
+#K.clear_session()
 
 def saveDict(name, location, json):
     f = open(name, 'w')
@@ -26,6 +26,24 @@ def getPoemPrediction(inp, model):
         for word, index in word_dict.items():
             if index == predicted:
                 print(word)
+                inp += " " + word
+                break
+    return inp
+
+def getArticlePrediction(inp, model):
+    inp = inp.lower()    
+    js = json.loads(open('articles/article_data_dict.json', 'r').read())
+    w_to_n = js['word_ind_dict']
+    n_to_w = js['ind_word_dict']
+    longest_sequence = js['long_seq']
+    for i in range(30):
+        words = inp.split(' ')
+        sequences = [w_to_n[word] for word in words]
+        sequences = pad_sequences([sequences], maxlen=longest_sequence, padding='pre')
+        sequences = sequences.reshape(1, 1, longest_sequence)
+        predicted = model.predict_classes(sequences)
+        for word, index in w_to_n.items():
+            if index == predicted:
                 inp += " " + word
                 break
     return inp

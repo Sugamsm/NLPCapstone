@@ -9,10 +9,11 @@ import re
 #nltk.download()
 #reading data
 
-poems = open('S:/SUNY/Semester 4/Project/Capstone/Capstone/Shakespeare.txt', 'r').read().lower()
+poems = open('poem/data/Shakespeare.txt', 'r').read().lower()
 filtered_lines = []
 for line in poems.split('\n'):
     line = re.sub(r'[!@#$%^*\(\)\[\];:\r]', ' ', line)
+    line = re.sub(r'[\n]+', ' ', line)
     line = re.sub(r'[\s]+', ' ', line)
     if line != '':
         filtered_lines.append(line)
