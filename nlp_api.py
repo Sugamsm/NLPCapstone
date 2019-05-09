@@ -8,14 +8,14 @@ import helper_functions
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-novel_model = load_model('./novel/novel_trained_model.model')
+novel_model = load_model('S:/SUNY/Semester 4/Project/Code/novel/novel_trained_model.model')
 novel_data_train_max_length_sequence = 75
 
 
 print('Reached here')
 def getPoemModel():
     print('Called model')
-    poem_model = load_model('poem/poems_model_local_new.h5py')
+    poem_model = load_model('S:/SUNY/Semester 4/Project/Code/poem/poems_model_local_new.h5py')
     print(poem_model.input_shape)
     return poem_model
 poem_model = getPoemModel()
