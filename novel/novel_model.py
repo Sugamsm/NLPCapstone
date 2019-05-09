@@ -73,6 +73,7 @@ data_dict['ind_word_dic'] = n_to_w
 data_dict['long_seq'] = longest_sequence
 open('novel_data_dict.json', 'w').write(json.dumps(data_dict))
 
+"""
 inp = "he went there alone looking for a fall"
 
 for i in range(30):
@@ -84,3 +85,4 @@ for i in range(30):
             inp += " " + output_word
             break
 print(inp)
+"""

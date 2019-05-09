@@ -12,19 +12,19 @@ app.config["DEBUG"] = True
 print('Reached here')
 def getPoemModel():
     print('Called model')
-    poem_model = load_model('poem/poems_model_local_new.h5py')
+    poem_model = load_model('S:/SUNY/Semester 4/Project/Code/poem/poems_model_local_new.h5py')
     print(poem_model.input_shape)
     return poem_model
 
 def getArticlesModel():
     print('Called model')
-    articles_model = load_model('articles/article_headlines.h5py')
+    articles_model = load_model('S:/SUNY/Semester 4/Project/Code/articles/article_headlines.h5py')
     print(articles_model.input_shape)
     return articles_model
 
 def getNovelModel():
     print('Called model')
-    novel_model = load_model('novel/novel_trained_model_old.model')
+    novel_model = load_model('S:/SUNY/Semester 4/Project/Code/novel/novel_trained_model_old.model')
     print(novel_model.input_shape)
     return novel_model
 poem_model = getPoemModel()
@@ -65,3 +65,5 @@ def getArticles():
     return json.dumps(d)
 
 app.run()
+
+app.aboutToQuit.connect(app.deleteLater)

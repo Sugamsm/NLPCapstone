@@ -1,7 +1,7 @@
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import numpy as np
-import nltk
+#import nltk
 import json
 from keras import backend as K
 
@@ -13,7 +13,7 @@ def saveDict(name, location, json):
     f.close()
 
 def getPoemPrediction(inp, model):
-    js = json.loads(open('./poem/poem_data_dict.json', 'r').read())
+    js = json.loads(open('S:/SUNY/Semester 4/Project/Code/poem/poem_data_dict.json', 'r').read())
     word_dict = dict(js['word_ind_dict'])
     tokenizer = Tokenizer()
     tokenizer.word_index = word_dict
@@ -32,7 +32,7 @@ def getPoemPrediction(inp, model):
 
 def getArticlePrediction(inp, model):
     inp = inp.lower()    
-    js = json.loads(open('articles/article_data_dict.json', 'r').read())
+    js = json.loads(open('S:/SUNY/Semester 4/Project/Code/articles/article_data_dict.json', 'r').read())
     w_to_n = js['word_ind_dict']
     n_to_w = js['ind_word_dict']
     longest_sequence = js['long_seq']
